@@ -16,8 +16,28 @@ export function Login() {
     try {
       await signIn(email, password);
       toast.success('Sesión iniciada correctamente');
+      
+      // Force a page reload to ensure the app re-renders with the new user state
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     } catch (error: any) {
-      toast.error(error.message || 'Error al iniciar sesión');
+      // Handle specific authentication errors
+      let errorMessage = 'Error al iniciar sesión';
+      
+      if (error.message.includes('Credenciales inválidas')) {
+        errorMessage = 'Email o contraseña incorrectos';
+      } else if (error.message.includes('User not found')) {
+        errorMessage = 'Usuario no encontrado. Verifica tu email';
+      } else if (error.message.includes('User is not active')) {
+        errorMessage = 'Usuario deshabilitado. Contacta al administrador';
+      } else if (error.message.includes('Database error')) {
+        errorMessage = 'Error de conexión. Intenta de nuevo';
+      } else {
+        errorMessage = error.message || 'Error al iniciar sesión';
+      }
+      
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -46,7 +66,7 @@ export function Login() {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              //placeholder="usuario@farmacia.com"
+              placeholder="usuario@farmacia.com"
             />
           </div>
 
@@ -61,7 +81,7 @@ export function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              //placeholder="••••••••"
+              placeholder="••••••••"
             />
           </div>
 
@@ -74,16 +94,30 @@ export function Login() {
           </button>
         </form>
 
-        {/*<div className="mt-8 text-center">
-          <p className="text-sm text-gray-600">
-            Para usar el sistema, necesitas:
+        <div className="mt-8 text-center">
+          <p className="text-sm text-gray-600 mb-4">
+            Credenciales de prueba disponibles:
           </p>
           
-        <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-            1. Crear un usuario en Supabase Dashboard<br/>
-            2. O usar tus credenciales existentes
+          <div className="space-y-2 text-xs text-gray-500">
+            <div className="bg-gray-50 p-3 rounded-lg">
+              <strong>Administrador:</strong><br/>
+              admin@farmacia.com / admin123
+            </div>
+            <div className="bg-gray-50 p-3 rounded-lg">
+              <strong>Farmacéutico:</strong><br/>
+              farmaceutico@farmacia.com / farmacia123
+            </div>
+            <div className="bg-gray-50 p-3 rounded-lg">
+              <strong>Cajero:</strong><br/>
+              cajero@farmacia.com / cajero123
+            </div>
+          </div>
+          
+          <p className="text-xs text-gray-400 mt-4">
+            Sistema de autenticación personalizado con contraseñas hasheadas
           </p>
-        </div>*/}
+        </div>
       </div>
     </div>
   );

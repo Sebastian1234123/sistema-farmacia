@@ -1,6 +1,7 @@
 export interface User {
   id: string;
   email: string;
+  password: string; // Agregado para autenticación local
   full_name: string;
   role: 'admin' | 'pharmacist' | 'cashier';
   created_at: string;
@@ -71,6 +72,8 @@ export interface Sale {
   payment_method: 'cash' | 'card' | 'transfer';
   status: 'completed' | 'cancelled' | 'refunded';
   created_at: string;
+  customers?: { full_name: string };
+  users?: { full_name: string };
 }
 
 export interface SaleItem {

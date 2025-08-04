@@ -7,6 +7,11 @@ import { Header } from './components/Layout/Header';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import { ProductList } from './components/Products/ProductList';
 import { SalesList } from './components/Sales/SalesList';
+import { CustomerList } from './components/Customers/CustomerList';
+import { PurchaseList } from './components/Purchases/PurchaseList';
+import { PrescriptionList } from './components/Prescriptions/PrescriptionList';
+import { ReportsList } from './components/Reports/ReportsList';
+import { SettingsList } from './components/Settings/SettingsList';
 
 const tabTitles = {
   dashboard: 'Dashboard',
@@ -50,15 +55,15 @@ function App() {
       case 'sales':
         return <SalesList />;
       case 'customers':
-        return <div className="p-6">Módulo de Clientes - En desarrollo</div>;
+        return <CustomerList />;
       case 'purchases':
-        return <div className="p-6">Módulo de Compras - En desarrollo</div>;
+        return <PurchaseList />;
       case 'prescriptions':
-        return <div className="p-6">Módulo de Recetas - En desarrollo</div>;
+        return <PrescriptionList />;
       case 'reports':
-        return <div className="p-6">Módulo de Reportes - En desarrollo</div>;
+        return <ReportsList />;
       case 'settings':
-        return <div className="p-6">Configuración del Sistema - En desarrollo</div>;
+        return <SettingsList />;
       default:
         return <Dashboard />;
     }

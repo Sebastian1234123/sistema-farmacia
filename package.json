@@ -7,22 +7,30 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "setup": "node setup-env.js",
+    "test-auth": "node test-auth.js",
+    "test-products": "node test-products.js",
+    "insert-products": "node insert-sample-products.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
     "@supabase/supabase-js": "^2.53.0",
     "date-fns": "^4.1.0",
+    "dotenv": "^17.2.1",
+    "file-saver": "^2.0.5",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.61.1",
     "react-hot-toast": "^2.5.2",
     "recharts": "^3.1.0",
+    "xlsx": "^0.18.5",
     "zod": "^4.0.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
+    "@types/file-saver": "^2.0.7",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
