@@ -46,7 +46,7 @@ export function Login() {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="usuario@farmacia.com"
+              //placeholder="usuario@farmacia.com"
             />
           </div>
 
@@ -61,7 +61,7 @@ export function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="••••••••"
+              //placeholder="••••••••"
             />
           </div>
 
@@ -74,15 +74,16 @@ export function Login() {
           </button>
         </form>
 
-        <div className="mt-8 text-center">
+        {/*<div className="mt-8 text-center">
           <p className="text-sm text-gray-600">
             Para usar el sistema, necesitas:
           </p>
-          <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+          
+        <p className="text-xs text-gray-500 mt-1 leading-relaxed">
             1. Crear un usuario en Supabase Dashboard<br/>
             2. O usar tus credenciales existentes
           </p>
-        </div>
+        </div>*/}
       </div>
     </div>
   );
