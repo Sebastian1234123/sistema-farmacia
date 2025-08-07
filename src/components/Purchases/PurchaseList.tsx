@@ -21,7 +21,7 @@ interface PurchaseOrder {
   supplier_name: string;
   total_amount: number;
   status: string;
-  order_date: string;
+  created_at: string;
   expected_delivery: string;
   notes: string;
 }
@@ -98,7 +98,7 @@ export function PurchaseList() {
           *,
           suppliers(name)
         `)
-        .order('order_date', { ascending: false });
+        .order('created_at', { ascending: false });
 
       if (ordersError) throw ordersError;
       setPurchaseOrders(ordersData?.map(order => ({
@@ -194,7 +194,7 @@ export function PurchaseList() {
         .insert([{
           ...orderForm,
           order_number: orderNumber,
-          order_date: new Date().toISOString(),
+          created_at: new Date().toISOString(),
           status: 'pending',
           total_amount: 0
         }])
@@ -353,7 +353,7 @@ export function PurchaseList() {
                     <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
                       <span className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
-                        {new Date(order.order_date).toLocaleDateString()}
+                        {new Date(order.created_at).toLocaleDateString()}
                       </span>
                       <span className="flex items-center gap-1">
                         <DollarSign className="w-4 h-4" />
@@ -647,7 +647,7 @@ export function PurchaseList() {
               </div>
               <div>
                 <p className="text-sm text-gray-500">Fecha de Orden</p>
-                <p className="font-medium">{new Date(selectedOrder.order_date).toLocaleDateString()}</p>
+                <p className="font-medium">{new Date(selectedOrder.created_at).toLocaleDateString()}</p>
               </div>
               <div>
                 <p className="text-sm text-gray-500">Entrega Esperada</p>

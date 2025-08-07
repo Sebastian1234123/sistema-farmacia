@@ -58,7 +58,7 @@ export function SettingsList() {
     full_name: '',
     email: '',
     role: 'cashier',
-    password: ''
+    password_hash: ''
   });
 
   const [billingForm, setBillingForm] = useState({
@@ -701,8 +701,8 @@ export function SettingsList() {
                 <input
                   type="password"
                   required
-                  value={userForm.password}
-                  onChange={(e) => setUserForm({...userForm, password: e.target.value})}
+                  value={userForm.password_hash}
+                  onChange={(e) => setUserForm({...userForm, password_hash: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                 />
               </div>
