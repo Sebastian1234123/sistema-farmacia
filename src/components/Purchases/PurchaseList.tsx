@@ -96,14 +96,14 @@ export function PurchaseList() {
         .from('purchase_orders')
         .select(`
           *,
-          suppliers!inner(name)
+          suppliers(name)
         `)
         .order('order_date', { ascending: false });
 
       if (ordersError) throw ordersError;
       setPurchaseOrders(ordersData?.map(order => ({
         ...order,
-        supplier_name: order.suppliers.name
+        supplier_name: order.suppliers?.name || ''  // Protege si suppliers es null
       })) || []);
 
       // Load supplier invoices with supplier names
@@ -111,14 +111,14 @@ export function PurchaseList() {
         .from('supplier_invoices')
         .select(`
           *,
-          suppliers!inner(name)
+          suppliers(name)
         `)
         .order('invoice_date', { ascending: false });
 
       if (invoicesError) throw invoicesError;
       setSupplierInvoices(invoicesData?.map(invoice => ({
         ...invoice,
-        supplier_name: invoice.suppliers.name
+        supplier_name: invoice.suppliers?.name || ''
       })) || []);
 
       // Load products for order items
